@@ -29,6 +29,16 @@ use app\modules\admin\models\Brand;
  */
 class Product extends \yii\db\ActiveRecord
 {
+    public  $image;
+
+    public function behaviors()
+    {
+        return [
+            'image' => [
+                'class' => 'rico\yii2images\behaviors\ImageBehave',
+            ]
+        ];
+    }
 
     /**
      * @inheritdoc
@@ -44,10 +54,11 @@ class Product extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_type', 'id_brand', 'id_form', 'title', 'price', 'quantity', 'picture', 'description'], 'required'],
+            [['id_type', 'id_brand', 'id_form', 'title', 'price' ], 'required'],
             [['id_type', 'id_brand', 'id_form', 'price', 'quantity'], 'integer'],
             [['description'], 'string'],
-            [['title', 'picture', 'sale', 'keywords'], 'string', 'max' => 255],
+            [['title', 'sale', 'keywords'], 'string', 'max' => 255],
+            [['image'], 'file', 'extensions'=>'png, jpg'],
             [['id_type'], 'exist', 'skipOnError' => true, 'targetClass' => Type::className(), 'targetAttribute' => ['id_type' => 'type_id']],
             [['id_brand'], 'exist', 'skipOnError' => true, 'targetClass' => Brand::className(), 'targetAttribute' => ['id_brand' => 'id']],
             [['id_form'], 'exist', 'skipOnError' => true, 'targetClass' => Form::className(), 'targetAttribute' => ['id_form' => 'id']],
@@ -68,7 +79,7 @@ class Product extends \yii\db\ActiveRecord
             'title' => 'Название',
             'price' => 'Цена',
             'quantity' => 'Количество',
-            'picture' => 'Фото',
+            'image' => 'Фото',
             'description' => 'Описание',
             'sale' => 'Скидка',
             'keywords' => 'Ключевые слова',
@@ -107,4 +118,17 @@ class Product extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Form::className(), ['id' => 'id_form']);
     }
+
+    public function upload(){
+        if($this->validate()){
+            $path='upload/store/'. $this->image->baseName . '.' . $this->image->extension;
+            $this->image->saveAs($path);
+            $this->attachImage($path, true);
+            @unlink($path);
+            return true;
+        } else{
+            return false;
+        }
+    }
+
 }

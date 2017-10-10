@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
 
+
 /**
  * ProductController implements the CRUD actions for Product model.
  */
@@ -68,6 +69,11 @@ class ProductController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
 
+            $model->image=UploadedFile::getInstance($model, 'image');
+            if($model->image){
+                $model->upload();
+            }
+
             Yii::$app->session->setFlash('success', "Новый товар {$model->title} добавлен");
 
             return $this->redirect(['view', 'id' => $model->id_product]);
@@ -89,6 +95,12 @@ class ProductController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+            $model->image=UploadedFile::getInstance($model, 'image');
+            if($model->image){
+                $model->upload();
+            }
+           // unset($model->image);
 
             Yii::$app->session->setFlash('success', "Товар обновлён");
 
@@ -130,4 +142,10 @@ class ProductController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+
+
+
+
+
 }

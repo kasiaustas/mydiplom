@@ -33,7 +33,9 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                     'attribute'=>'parent_id',
                 'value'=>function($data){
+                    echo $data->brand->name;
                    return $data->brand->name ?$data->brand->name : "Самостоятельная категория";
+
                 },
             ],
             'name',

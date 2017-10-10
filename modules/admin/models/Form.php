@@ -31,6 +31,7 @@ class Form extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['id'], 'integer'],
             [['parent_id'], 'integer'],
             [['name', 'keywords'], 'required'],
             [['name', 'keywords', 'description'], 'string', 'max' => 255],
@@ -43,11 +44,11 @@ class Form extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'parent_id' => 'Parent ID',
-            'name' => 'Name',
-            'keywords' => 'Keywords',
-            'description' => 'Description',
+            'id' => '№ формы',
+            'parent_id' => 'Родительская категория',
+            'name' => 'Название',
+            'keywords' => 'Ключевые слова',
+            'description' => 'Мета-описание',
         ];
     }
 
@@ -57,5 +58,10 @@ class Form extends \yii\db\ActiveRecord
     public function getProducts()
     {
         return $this->hasMany(Product::className(), ['id_form' => 'id']);
+    }
+
+    public function getForm()
+    {
+        return $this->hasOne(Form::className(), ['id' => 'parent_id']);
     }
 }

@@ -1,8 +1,7 @@
 <?php
 
 namespace app\components;
-use app\models\Brand;
-use app\models\Category;
+
 use app\models\Form;
 use app\models\Product;
 use yii\base\Widget;
@@ -17,6 +16,7 @@ class Menu1Widget extends Widget
     //public $dataproduct;
     public $tree;
     public $menuHtml;
+    public $model;
 
 
     public function init(){
@@ -53,15 +53,15 @@ class Menu1Widget extends Widget
         return $tree;
     }
 
-    protected function getMenuHtml($tree){
+    protected function getMenuHtml($tree, $tab=' '){
         $str='';
         foreach ($tree as $form){
-            $str .=$this->catToTemplate($form);
+            $str .=$this->catToTemplate($form, $tab);
         }
         return $str;
     }
 
-    protected function catToTemplate($form){
+    protected function catToTemplate($form, $tab){
         ob_start();
         include __DIR__ . '/menu1_tpl/' . $this->tpl;
         return ob_get_clean();

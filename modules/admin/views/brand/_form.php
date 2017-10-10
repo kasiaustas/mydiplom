@@ -11,7 +11,7 @@ use yii\widgets\ActiveForm;
 <div class="brand-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
+    <?= $form->field($model, 'id')->textInput() ?>
     <?php //echo $form->field($model, 'parent_id')->textInput() ?>
     <?php //echo $form->field($model, 'parent_id')->dropDownList
     //(\yii\helpers\ArrayHelper::map(\app\models\Brand::find()->all(),
@@ -22,7 +22,7 @@ use yii\widgets\ActiveForm;
             <option value="0">Самостоятельная категория</option>
             <?=\app\components\MenuWidget::widget(['tpl'=>'select', 'model'=>$model])?>
         </select>
-
+    </div>
 <br/>
         <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 

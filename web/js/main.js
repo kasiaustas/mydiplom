@@ -62,23 +62,6 @@ window.addEventListener("load", function () {
 }, false);
 
 
-// window.addEventListener("load", function a()
-// {
-//     var firsta = document.querySelectorAll(".menu_new>a")[0];//замена 1  ссылки на просто текст в меню  товаров
-//     var elementLI = document.createElement("div");//замена 1 ссылки на просто текст в меню  товаров
-//     var a1 = firsta.replaceWith(elementLI);//замена 1 ссылки на просто текст в меню  товаров
-//     var textSmartPhone = document.createTextNode("БРЕНД");//замена 1 ссылки на просто текст в меню  товаров
-//     var b = elementLI.appendChild(textSmartPhone);//замена 1 ссылки на просто текст в меню  товаров
-//     //textSmartPhone.style.cssText="display: inline-block; font-family: Helvetica,sans-serif; margin-bottom: 0; margin-left: 0; text-transform: uppercase;"
-//
-//
-//     var seca = document.querySelectorAll(".menu_new>a")[7];//замена 1  ссылки на просто текст в меню товаров
-//     var element2 = document.createElement("div");//замена 1 ссылки на просто текст в меню  товаров
-//     var a2 = seca.replaceWith(element2);//замена 1 ссылки на просто текст в меню товаров
-//     var text2 = document.createTextNode("ФОРМА");//замена 1 ссылки на просто текст в меню  товаров
-//     var b2 = element2.appendChild(text2);//замена 1 ссылки на просто текст в меню  товаров
-// }, false);
-
 function showCart(cart) {
     $('#cart .modal-body').html(cart);
     $('#cart').modal().css({"display": "block", "width": "2000px"});
@@ -99,8 +82,10 @@ function getCart() {
     return false;
 }
 
+
+
 $('#cart .modal-body').on('click', '.del-item', function(){
-     var id=$(this).data('id');
+    var id=$(this).data('id');
     $.ajax({
         url:'/cart/del-item',
         data:{id:id},

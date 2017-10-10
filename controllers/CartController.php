@@ -21,8 +21,9 @@ class CartController extends AppController
     public  function actionAdd(){
         $id=Yii::$app->request->get('id');
         $qty=(int)Yii::$app->request->get('qty');
-        $qty=!$qty ? 1 : $qty;
+        $qty=1;
         $product=Product::findOne($id);
+        $qty=$qty<=$product->quantity ? 1 : die;
         if(empty($product)) return false;
 
         $session=Yii::$app->session;
@@ -66,7 +67,7 @@ class CartController extends AppController
     public function actionView(){
         $session=Yii::$app->session;
         $session->open();
-        $this->setMeta('Корзина');
+        $this->setMeta('Оформление заказа');
         $order=new Order();
 
         if($order->load(Yii::$app->request->post())){

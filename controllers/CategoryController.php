@@ -9,7 +9,6 @@
 namespace app\controllers;
 
 use app\models\Brand;
-use app\models\Category;
 use app\models\Form;
 use app\models\Product;
 use app\models\Type;
@@ -22,56 +21,64 @@ class CategoryController extends AppController
 {
     public function actionIndex()
     {
-        $this->setMeta('EXCLUSIVE SUNGLASSES');//установка title
+        $this->setMeta('EXCLUSIVE SUNGLASSES солнцезащитные очки от брендов-лидеров',  $keywords='очки, солнцезащитные очки, очки фенди, очки диор, очки ray-ban, очки saint laurent, очки givenchy, очки каррера, очки палароид кидс',
+            $description='Солнцезащитные очки коллекции 2017. Такие бренды как: FENDI, DIOR, GIVENCHY, RAY-BAN, SAINT LAURENT, CARRERA, PALAROID KIDS'  );//установка title
         return $this->render('index');
     }
 
     public  function actionWomen(){
        // $women=Product::find()->where(['id_type'=>1])->all();
 
+        $compsubcatname = Type::find()->all();
+
         $query =Product::find()->where(['id_type'=>1]);
+
         $pages=new Pagination(['totalCount'=>$query->count(), 'pageSize'=>12]);
         $women=$query->offset($pages->offset)->limit($pages->limit)->all();
 
+
         $this->setMeta('SUNGLASSES | women', $keywords='очки, женские очки, купить очки',
             $description='женские очки от солнца');//установка title
-        return $this->render('women',  compact('women', 'pages'));
+        return $this->render('women',  compact('women', 'pages', 'compsubcatname'));
 
     }
 
     public  function actionMan(){
         //$man=Product::find()->where(['id_type'=>2])->all();
+        $compsubcatname = Type::find()->all();
         $query =Product::find()->where(['id_type'=>2]);
         $pages=new Pagination(['totalCount'=>$query->count(), 'pageSize'=>12]);
         $man=$query->offset($pages->offset)->limit($pages->limit)->all();
 
         $this->setMeta('SUNGLASSES | man', $keywords='очки, мужские очки, купить очки',
             $description='мужские очки от солнца');//установка title
-        return $this->render('man', compact('man', 'pages'));
+        return $this->render('man', compact('man', 'pages', 'compsubcatname'));
 
     }
 
     public  function actionKids(){
         //$kids=Product::find()->where(['id_type'=>3])->all();
+        $compsubcatname = Type::find()->all();
         $query =Product::find()->where(['id_type'=>3]);
         $pages=new Pagination(['totalCount'=>$query->count(), 'pageSize'=>12]);
         $kids=$query->offset($pages->offset)->limit($pages->limit)->all();
 
         $this->setMeta('SUNGLASSES | kids', $keywords='очки, детские очки, купить очки',
             $description='детские очки от солнца');//установка title
-        return $this->render('kids', compact('kids', 'pages'));
+        return $this->render('kids', compact('kids', 'pages', 'compsubcatname'));
 
     }
 
     public  function actionSale(){
         //$sale=Product::find()->where(['>', 'sale', 0])->orderBy(['sale'=>SORT_DESC])->all();
+        $compsubcatname = Type::find()->all();
         $query =Product::find()->where(['>', 'sale', 0])->orderBy(['sale'=>SORT_DESC]);
         $pages=new Pagination(['totalCount'=>$query->count(), 'pageSize'=>12]);
         $sale=$query->offset($pages->offset)->limit($pages->limit)->all();
 
         $this->setMeta('SUNGLASSES | sale', $keywords='очки, распродажа очков, купить очки со скидкой',
             $description='распродажа очков от солнца');//установка title
-        return $this->render('sale', compact('sale', 'pages'));
+        return $this->render('sale', compact('sale', 'pages', 'compsubcatname'));
 
     }
 
@@ -138,6 +145,8 @@ class CategoryController extends AppController
     public function actionView($id){
        // $id=Yii::$app->request->get('id');
         //$products =Product::find()->having(['id_brand'=>$id, 'id_type'=>1])->orHaving(['id_form'=>$id, 'id_type'=>1])->all();
+        $compsubcatname = Type::find()->all();
+
         $brand=Brand::findOne($id);
         $form=Form::findOne($id);
         if(empty($brand)&&empty($form)){
@@ -152,13 +161,14 @@ class CategoryController extends AppController
         else {$t= $form; }
 
         $this->setMeta('SUNGLASSES | '.$t->name, $t->keywords, $t->description);//установка title
-        return $this->render('view', compact('products', 'pages', 'form', 'brand'));
+        return $this->render('view', compact('products', 'pages', 'form', 'brand', 'compsubcatname'));
 
     }
 
     public function actionViewman($id){
         //$id=Yii::$app->request->get('id');
         //$products_man =Product::find()->having(['id_brand'=>$id, 'id_type'=>2])->orHaving(['id_form'=>$id, 'id_type'=>2])->all();
+        $compsubcatname = Type::find()->all();
         $brand=Brand::findOne($id);
         $form=Form::findOne($id);
         if(empty($brand)&&empty($form)){
@@ -172,13 +182,14 @@ class CategoryController extends AppController
         if (isset($brand)){$t=$brand;}
         else {$t= $form; }
         $this->setMeta('SUNGLASSES | '.$t->name, $t->keywords, $t->description);//установка title
-        return $this->render('viewman', compact('products_man', 'pages', 'form', 'brand'));
+        return $this->render('viewman', compact('products_man', 'pages', 'form', 'brand', 'compsubcatname'));
 
     }
 
     public function actionViewkids($id){
        // $id=Yii::$app->request->get('id');
         //$products_kids =Product::find()->having(['id_brand'=>$id, 'id_type'=>3])->orHaving(['id_form'=>$id, 'id_type'=>3])->all();
+        $compsubcatname = Type::find()->all();
         $brand=Brand::findOne($id);
         $form=Form::findOne($id);
         if(empty($brand)&&empty($form)){
@@ -192,13 +203,14 @@ class CategoryController extends AppController
         if (isset($brand)){$t=$brand;}
         else {$t= $form; }
        $this->setMeta('SUNGLASSES | '.$t->name, $t->keywords, $t->description);//установка title
-        return $this->render('viewkids', compact('products_kids', 'pages', 'form', 'brand'));
+        return $this->render('viewkids', compact('products_kids', 'pages', 'form', 'brand', 'compsubcatname'));
 
     }
 
     public function actionViewsale($id){
         //$id=Yii::$app->request->get('id');
        // $products_sale =Product::find()->having(['id_brand'=>$id])->orHaving(['id_form'=>$id])->andHaving(['>', 'sale', 0])->orderBy(['sale'=>SORT_DESC])->all();
+        $compsubcatname = Type::find()->all();
         $brand=Brand::findOne($id);
         $form=Form::findOne($id);
         if(empty($brand)&&empty($form)){
@@ -212,7 +224,7 @@ class CategoryController extends AppController
         if (isset($brand)){$t=$brand;}
         else {$t= $form; }
         $this->setMeta('SUNGLASSES | '.$t->name, $t->keywords, $t->description);//установка title
-        return $this->render('viewsale', compact('products_sale', 'pages', 'form', 'brand'));
+        return $this->render('viewsale', compact('products_sale', 'pages', 'form', 'brand', 'compsubcatname'));
 
     }
 

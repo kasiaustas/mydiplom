@@ -39,34 +39,13 @@ AppAsset::register($this);
                     <a href="<?=Url::home()?>" class="logo"><?=Html::img('@web/images/onestr/logo.png', ['alt'=>'EXCLUSIVE SUNGLASSES', 'title'=>'EXCLUSIVE SUNGLASSES'])?></a>
                 </div>
                 <div class="col-md-2" >
-<?php if(!Yii::$app->user->isGuest):?>
-    <a style="float: right;" href="<?=Url::to(['/site/logout'])?>" id="autorization" title="выход"  class="selected" ><?=Yii::$app->user->identity['username']?> (ВЫХОД)</a>
-    <?php endif;?>
+
                 </div>
                 <div class="col-md-1">
-                    <a style="float: right;" href="<?=Url::to(['/admin'])?>" id="autorization" title="личный кабинет"  class="selected" >ВОЙТИ</a>
+
                 </div>
 
-<!--                <div id="" class="account_nav_popup">-->
-<!--                    <h4>Вход в кабинет</h4>-->
-<!--                    <form id="account_nav_login_form" action="" method="post">-->
-<!--                        <div class="entry_fields ">-->
-<!--                            <label id="login.email" class="" for="j_username_login.email">  Email</label>-->
-<!--                            <input id="j_username_login.email" class="text" name="j_username" title="j_username" value="" type="text">-->
-<!--                            <div class="form_field-label">-->
-<!--                                <label class="" for="j_password">-->
-<!--                                    Пароль-->
-<!--                                </label>-->
-<!--                            </div>-->
-<!--                            <div class="form_field-input">-->
-<!--                                <input id="j_password" class="text password" name="j_password" value="" type="password">-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <input id="login-submit" value="ВОЙТИ" type="submit" href="account.html">-->
-<!--                        <br>-->
-<!--                    </form>-->
-<!--                    <a class="createaccount " href="register.html">Create An Account</a>-->
-<!--                </div>-->
+
 
                 <div class="col-md-1">
                     <a href="#" class="kart" title="корзина" onclick="return getCart()"><img src="/images/onestr/kart.png"/></a>
@@ -74,7 +53,7 @@ AppAsset::register($this);
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12 line">
                     <img src="/images/onestr/lineone.png"/>
                 </div>
             </div>
@@ -94,7 +73,7 @@ AppAsset::register($this);
 
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12 line">
                     <img src="/images/onestr/linetwo.png"/>
                 </div>
             </div>
@@ -111,7 +90,7 @@ AppAsset::register($this);
         <div class="bottom-block">
             <div class="row">
 
-                <div class="col-md-5">
+                <div class="col-md-5 line_b">
                     <img src="/images/onestr/lone.png"/>
                 </div>
                 <div class="col-md-2">
@@ -122,8 +101,8 @@ AppAsset::register($this);
                     </div>
                 </div>
 
-                <div class="col-md-5">
-                    <a class="rightline"> <img src="/images/onestr/ltwo.png"/></a>
+                <div class="col-md-5 line_b">
+                     <img src="/images/onestr/ltwo.png"/>
                 </div>
             </div>
 
@@ -143,17 +122,14 @@ AppAsset::register($this);
                 <p><a href="<?=Url::to(['shop/rules'])?>" title="Правила продажи">Правила продажи</a></p>
 
             </div>
+
             <div class="col-md-6">
-                <form>
-                    <div class="form-group " style="float: right">
-                        <p>РАССЫЛКА</p>
-                        <div class="form-inline">
-                            <input type="email" class="form-control" id="inputEmail3" placeholder="Введите свой e-mail">
-                            <input type="button" class="searchBtn" value=">" id="subcribeBtn_NL" alt="Subscribe" onclick="">
-                        </div>
-                        <p>Получи информацию о скидках первый!</p>
+                    <div class="form-group " style="float: right" >
+                        <p>ТЕЛЕФОН КОНТАКТ-ЦЕНТРА</p>
+                        <p>8 (029) 111-11-11</p>
+
                     </div>
-                </form>
+
             </div>
 
         </div>
@@ -165,7 +141,8 @@ Modal::begin([
         'header'=>'<h1 class="cart_header">КОРЗИНА</h1>',
     'id'=>'cart',
     'size'=>'modal-lg',
-    'footer'=>'<button  type="button"  id="button_ordering" data-dismiss="modal">ПРОДОЛЖИТЬ ПОКУПКИ</button>
+    'footer'=>' 
+             <button  type="button"  id="button_ordering" data-dismiss="modal">ПРОДОЛЖИТЬ ПОКУПКИ</button>
            <a href="'.Url::to(['cart/view']) . '" >  <button  type="button" id="button_ordering">ОФОРМИТЬ ЗАКАЗ</button></a>
               <button  type="button"  id="button_ordering" onclick="clearCart()">ОЧИСТИТЬ КОРЗИНУ</button>',
 

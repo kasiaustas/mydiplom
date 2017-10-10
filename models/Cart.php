@@ -14,7 +14,18 @@ use yii\base\Model;
 
 class Cart extends AppAsset
 {
+
+    public function behaviors()
+    {
+        return [
+            'image' => [
+                'class' => 'rico\yii2images\behaviors\ImageBehave',
+            ]
+        ];
+    }
+
     public function addToCart($product, $qty=1){
+        $mainImg = $product->getImage();
       if(isset($_SESSION['cart'][$product->id_product])){
           $_SESSION['cart'][$product->id_product]['qty']+=$qty;
       }
@@ -23,7 +34,7 @@ class Cart extends AppAsset
               'qty'=>$qty,
               'name'=>$product->title,
               'price'=>$product->price,
-              'img'=>$product->picture,
+              'img'=>$mainImg->getUrl('x50'),
           ];
       }
       $_SESSION['cart.qty']=isset( $_SESSION['cart.qty']) ? $_SESSION['cart.qty'] + $qty : $qty;

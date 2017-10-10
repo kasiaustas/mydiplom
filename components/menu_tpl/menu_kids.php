@@ -1,6 +1,7 @@
 <?php
 use app\components\MenuWidget;
 use yii\helpers\Url;
+use app\models\Product;
 ?>
 
 <ul class="menu_brand">

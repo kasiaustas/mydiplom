@@ -31,6 +31,7 @@ class Brand extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['id'], 'integer'],
             [['parent_id'], 'integer'],
             [['name', 'keywords'], 'required'],
             [['name', 'keywords', 'description'], 'string', 'max' => 255],

@@ -20,6 +20,7 @@ AppAsset::register($this);
         <meta charset="<?= Yii::$app->charset ?>">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <?= Html::csrfMetaTags() ?>
         <title>Admin | <?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
@@ -34,10 +35,10 @@ AppAsset::register($this);
             <header>
 
                 <div class="row">
-                    <div class="col-md-7">
+                    <div class="col-md-5">
                         <a href="<?=Url::home()?>" class="logo"><?=Html::img('@web/images/onestr/logo.png', ['alt'=>'EXCLUSIVE SUNGLASSES', 'title'=>'EXCLUSIVE SUNGLASSES'])?></a>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-7">
 
                         <?php if(!Yii::$app->user->isGuest):?>
                             <row>
@@ -47,11 +48,13 @@ AppAsset::register($this);
                                     <ul class="nav navbar-nav">
                                         <li class="active"><a href="<?=Url::to(['/admin'])?>">ГЛАВНАЯ </a></li>
                                         <li class="dropdown">
-                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">БРЕНДЫ
+                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">КАТЕГОРИИ
                                                 <span class="caret"></span></a>
                                             <ul class="dropdown-menu">
                                                 <li><a href="<?=Url::to(['brand/index'])?>">Список брендов</a></li>
                                                 <li><a href="<?=Url::to(['brand/create'])?>">Добавить бренд</a></li>
+                                                <li><a href="<?=Url::to(['form/index'])?>">Список форм</a></li>
+                                                <li><a href="<?=Url::to(['form/create'])?>">Добавить форму</a></li>
                                             </ul>
                                         </li>
 
@@ -61,6 +64,15 @@ AppAsset::register($this);
                                             <ul class="dropdown-menu">
                                                 <li><a href="<?=Url::to(['product/index'])?>">Список товаров</a></li>
                                                 <li><a href="<?=Url::to(['product/create'])?>">Добавить товар</a></li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">АДМИНИСТРАТОРЫ
+                                                <span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="<?=Url::to(['user/index'])?>">Список администраторов</a></li>
+                                                <li><a href="<?=Url::to(['user/create'])?>">Добавить администратора</a></li>
                                             </ul>
                                         </li>
 
@@ -126,7 +138,7 @@ AppAsset::register($this);
             <div class="bottom-block">
                 <div class="row">
 
-                    <div class="col-md-5">
+                    <div class="col-md-5 line_b">
                         <img src="/images/onestr/lone.png"/>
                     </div>
                     <div class="col-md-2">
@@ -137,8 +149,8 @@ AppAsset::register($this);
                         </div>
                     </div>
 
-                    <div class="col-md-5">
-                        <a class="rightline"> <img src="/images/onestr/ltwo.png"/></a>
+                    <div class="col-md-5 line_b">
+                        <img src="/images/onestr/ltwo.png"/>
                     </div>
                 </div>
 
@@ -158,17 +170,14 @@ AppAsset::register($this);
                     <p><a href="<?=Url::to(['shop/rules'])?>" title="Правила продажи">Правила продажи</a></p>
 
                 </div>
+
                 <div class="col-md-6">
-                    <form>
-                        <div class="form-group " style="float: right">
-                            <p>РАССЫЛКА</p>
-                            <div class="form-inline">
-                                <input type="email" class="form-control" id="inputEmail3" placeholder="Введите свой e-mail">
-                                <input type="button" class="searchBtn" value=">" id="subcribeBtn_NL" alt="Subscribe" onclick="">
-                            </div>
-                            <p>Получи информацию о скидках первый!</p>
-                        </div>
-                    </form>
+                    <div class="form-group " style="float: right" >
+                        <p>ТЕЛЕФОН КОНТАКТ-ЦЕНТРА</p>
+                        <p>8 (029) 111-11-11</p>
+
+                    </div>
+
                 </div>
 
             </div>

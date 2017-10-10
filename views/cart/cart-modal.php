@@ -26,7 +26,7 @@ use app\models\Cart;
         <tbody>
     <?php foreach ($session['cart'] as $id=>$item):?>
         <tr>
-        <td class=""><?= Html::img("@web/images/product/{$item['img']}", ['alt'=>$item['name'], 'height'=>50])?></td>
+        <td class=""><?= Html::img($item['img'], ['alt'=>$item['name'], 'height'=>50])?></td>
         <td class="item_cart"><?=$item['name']?></td>
         <td class="item_cart"><?=$item['qty']?></td>
         <td class="item_cart"><?=$item['price']?></td>

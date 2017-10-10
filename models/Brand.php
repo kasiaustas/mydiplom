@@ -11,6 +11,16 @@ use yii\db\ActiveRecord;
 
 class Brand  extends ActiveRecord
 {
+
+    public function behaviors()
+    {
+        return [
+            'image' => [
+                'class' => 'rico\yii2images\behaviors\ImageBehave',
+            ]
+        ];
+    }
+
     public static function tableName(){
         return 'brand';
     }

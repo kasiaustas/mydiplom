@@ -19,6 +19,7 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
        // 'css/bootstrap.min.css',
+        'css/tiltEffect.css',
         'css/main.css',
     ];
     public $js = [
@@ -28,6 +29,7 @@ class AppAsset extends AssetBundle
         //'js/jquery.js',
         //'js/jquery.scrollUp.min.js',
         'js/jquery_cookie.js',
+        'css/tiltEffect.js',
         'js/main.js',
     ];
     public $depends = [

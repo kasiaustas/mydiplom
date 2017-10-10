@@ -35,7 +35,7 @@ use yii\jui\DatePicker;
             <?php $form=\yii\widgets\ActiveForm::begin()?>
             <div class="clearfix">
                 <div class="two_colums_alpha">
-                    <?=$form->field($order, 'name')?>
+                     <?=$form->field($order, 'name')->textInput()?>
                 </div>
                 <div class="two_colums_omega">
                     <?=$form->field($order, 'last_name')?>
@@ -125,7 +125,7 @@ use yii\jui\DatePicker;
         <?php foreach ($session['cart'] as $id=>$item):?>
         <div class="item_one_cart1">
             <div class="row">
-                <div class="col-md-3"><div><?= Html::img("@web/images/product/{$item['img']}", ['alt'=>$item['name'], 'height'=>50])?></div></div>
+                <div class="col-md-3"><div><?= Html::img($item['img'], ['alt'=>$item['name'], 'height'=>50])?></div></div>
                 <div class="col-md-3"><span class="name_cart1"><a href="<?=Url::to(['product/view', 'id'=>$id])?>"><?=$item['name']?></a></span></div>
                 <div class="col-md-3"><div class="quantity_item1"><?=$item['qty']?></div><br/></div>
                 <div class="col-md-3"><div class="price1">РУБ <?=$item['price']?></div></div>
