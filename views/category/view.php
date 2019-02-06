@@ -98,7 +98,7 @@ use app\models\Product;
                                         <?php endif;?>
                                     </h4>
                                     <a href="<?=\yii\helpers\Url::to(['product/view', 'id'=>$product->id_product])?>">
-                                    <button type="button" id="" class="button white small" href="" >MORE</button><!--кнопка на страницу с инфой о товаре-->
+                                    <button type="button" id="" class="button white small" href="" >Подробнее</button><!--кнопка на страницу с инфой о товаре-->
                                     </a>
                                     <br>
                                 </div>

@@ -88,7 +88,7 @@ use yii\widgets\Breadcrumbs;
                                         <?php endif;?>
                                     </h4>
                                     <a href="<?=\yii\helpers\Url::to(['product/view', 'id'=>$product_givenchy->id_product])?>">
-                                    <button type="button" id="" class="button white small" href="javascript://" onclick="">MORE</button><!--кнопка на страницу с инфой о товаре-->
+                                    <button type="button" id="" class="button white small" href="javascript://" onclick="">Подробнее</button><!--кнопка на страницу с инфой о товаре-->
                                     </a>
                                     <br>
                                 </div>
